@@ -1,0 +1,14 @@
+<?php
+
+function cachebust_theme_registry_alter(&$theme_registry) {
+  $path = drupal_get_path('module', 'cachebust');
+  // Override the content type summary info.
+  if (isset($theme_registry['node_admin_overview'])) {
+    // This is how it is done in hook_theme(), but it does not work here.
+    // $theme_registry['node_admin_overview']['file'] = 'node_admin_overview.inc';
+    // $theme_registry['node_admin_overview']['path'] = $path . '/theme';
+    $theme_registry['image']['theme path'] = $path;
+    $theme_registry['image']['includes'][] = $path . '/theme.inc';
+    $theme_registry['image']['function'] = 'theme_cachebustimage';
+  }
+}

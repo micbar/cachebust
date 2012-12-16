@@ -1,0 +1,5 @@
+name = Cachebust
+description = Provides a cache busting string to images.
+package = image
+core = 7.x
+dependencies[] = image
