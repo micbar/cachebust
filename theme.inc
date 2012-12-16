@@ -2,14 +2,14 @@
 
 function theme_cachebustimage($variables) {
   $attributes = $variables['attributes'];
-  $internal_path = str_replace($GLOBALS['base_url'].'/','' ,$variables['path']);
+  $internal_path = str_replace($GLOBALS['base_url']. '/', '', $variables['path']);
   if (is_file($internal_path)) {
     $cachebust = filemtime($internal_path);
   }
   else {
     $cachebust = time();
   }
-  $attributes['src'] = file_create_url($variables['path']).'?'.$cachebust;
+  $attributes['src'] = file_create_url($variables['path']). '?' . $cachebust;
 
   foreach (array('width', 'height', 'alt', 'title') as $key) {
 
