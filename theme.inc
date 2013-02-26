@@ -9,7 +9,15 @@ function theme_cachebustimage($variables) {
   else {
     $cachebust = time();
   }
-  $attributes['src'] = file_create_url($variables['path']). '?' . $cachebust;
+  
+  $attributes['src'] = file_create_url($variables['path']);
+  
+  if (strstr($attributes['src'], '?')) {
+    $attributes['src'] = $attributes['src'] . '&time=' . $cachebust;
+  }
+  else {
+    $attributes['src'] = $attributes['src'] . '?time=' . $cachebust;
+  }
 
   foreach (array('width', 'height', 'alt', 'title') as $key) {
 
